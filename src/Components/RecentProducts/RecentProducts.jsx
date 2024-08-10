@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function RecentProducts({product}) {
   return <>
     
-        <div className='mx-16 md:mx-0 w-full md:w-1/3 lg:w-1/5 my-3 px-2'>
+        <div className=' md:mx-0 w-1/2 md:w-1/3 lg:w-1/5 my-3 px-2'>
            <div className='overflow-hidden product shadow-lg px-3'>
                 <Link to={`productdetails/${product.category.name}/${product.id}`}>
             <div>
