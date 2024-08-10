@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, createHashRouter, RouterProvider } from 'react-router-dom'
 import Layout from './Components/Layout/Layout.jsx'
 import Home from './Components/Home/Home.jsx'
 import Cart from './Components/Cart/Cart.jsx'
@@ -18,7 +18,7 @@ import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.jsx'
 import ProtectedLogin from './Components/ProtectedLogin/ProtectedLogin.jsx'
 import ProductDetails from './Components/ProductDetails/ProductDetails.jsx'
 
-let routers = createBrowserRouter([
+let routers = createHashRouter([
   {path: '' , element: <Layout/>, children :[
     {index: true , element:<ProtectedRoute><Home/></ProtectedRoute>},
     {path:'cart' , element:<ProtectedRoute><Cart/></ProtectedRoute>},
