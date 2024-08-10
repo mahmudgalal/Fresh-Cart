@@ -9,7 +9,7 @@ import style from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <div className="bg-black w-full text-white py-5">
+    <div className="bg-black w-full text-white py-5 px-5 md:px-0">
       <div className="container">
         <h2 className="text-3xl mb-3 mx-3">Get the FreshCart App</h2>
         <p className="text-lg mx-3">

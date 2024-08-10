@@ -36,7 +36,7 @@ a , a:hover{
 }
 .product .btn 
 {
-    transition: transform 1s , opacity 1s;
+    transition: transform 0.4s , opacity 1s;
     transform: translateY(100%);
     opacity: 0;
 }

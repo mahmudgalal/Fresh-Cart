@@ -23,7 +23,7 @@ let routers = createHashRouter([
     {index: true , element:<ProtectedRoute><Home/></ProtectedRoute>},
     {path:'cart' , element:<ProtectedRoute><Cart/></ProtectedRoute>},
     {path:'products' , element:<ProtectedRoute><Products/></ProtectedRoute>},
-    {path:'productdetails/:id/:category' , element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
+    {path:'productdetails/:category/:id' , element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
     {path:'categories' , element:<ProtectedRoute><Categories/></ProtectedRoute>},
     {path:'brands' , element:<ProtectedRoute><Brands/></ProtectedRoute>},
     {path:'login' , element:<ProtectedLogin><Login/></ProtectedLogin>},

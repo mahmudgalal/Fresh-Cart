@@ -8,10 +8,11 @@ import "slick-carousel/slick/slick-theme.css";
 import Loading from '../Loading/Loading';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import RelatedProducts from '../RelatedProducts/RelatedProducts';
 
 export default function ProductDetails() {
-const {id , category} = useParams()
-const [product , setProduct] = useState('')
+const {id} = useParams()
+const [product , setProduct] = useState();
 
 useEffect(() => {
   AOS.init({
@@ -27,14 +28,17 @@ var settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
-  autoplaySpeed: 3000,
+  autoplaySpeed: 1500,
   autoplay: true,
+
 }
+
 
 async function getProductDetails(id) {
   const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
   setProduct(data.data);
 }
+
 
 
 
@@ -44,7 +48,7 @@ useEffect(() => {
     
   return <div data-aos = 'zoom-in'>
     
-    <div className='flex flex-col md:flex-row gap-12 my-10'>
+    <div className='flex flex-col md:flex-row gap-12 my-10 mx-4 md:mx-0'>
       {
         product? <>
           <div className='w-full md:w-1/4 my-4 py-3'>
@@ -67,16 +71,19 @@ useEffect(() => {
         </div>
         <button className='btn w-full bg-main text-white rounded my-2 py-2'>Add to Cart</button>
       </div>
+      
         </> :
           <div className='flex justify-center items-center w-full h-[500px]'>
           <Loading/>
           </div>
       }
-  
       
     </div>
-
-
+  
+        <div data-aos='zoom-in'>
+          <RelatedProducts id={product?.category._id}/>
+        </div> 
+      
   
   </div>
 }

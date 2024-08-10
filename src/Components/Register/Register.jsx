@@ -52,7 +52,7 @@ export default function Register() {
   });
 
   return (
-    <div data-aos='fade-left'>
+    <div data-aos='fade-left' className="mx-5 md:mx-0">
       <h2 className="text-center text-3xl my-12">Register Now</h2>
       {apiError && (
         <div
