@@ -12,7 +12,6 @@ import "aos/dist/aos.css";
 export default function ProductDetails() {
 const {id , category} = useParams()
 const [product , setProduct] = useState('')
-const [allProducts , setAllProducts] = useState('')
 
 useEffect(() => {
   AOS.init({
@@ -36,14 +35,7 @@ async function getProductDetails(id) {
   const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
   setProduct(data.data);
 }
-async function getRelatedProducts(category) {
-  const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/`);
-  setAllProducts(data.data);
-  allProducts?.filter((product) => {
-    return product.category.name == category
-  })
-  console.log(allProducts);
-}
+
 
 
 useEffect(() => {
