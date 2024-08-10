@@ -40,7 +40,6 @@ async function getProductDetails(id) {
 
 useEffect(() => {
   getProductDetails(id);
-  getRelatedProducts(category);
 } , [])
     
   return <div data-aos = 'zoom-in'>
