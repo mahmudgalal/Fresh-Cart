@@ -17,6 +17,7 @@ import AuthContextProvider from './Context/AuthContext.jsx'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.jsx'
 import ProtectedLogin from './Components/ProtectedLogin/ProtectedLogin.jsx'
 import ProductDetails from './Components/ProductDetails/ProductDetails.jsx'
+import SubCategory from './Components/SubCategory/SubCategory.jsx'
 
 let routers = createHashRouter([
   {path: '' , element: <Layout/>, children :[
@@ -25,6 +26,7 @@ let routers = createHashRouter([
     {path:'products' , element:<ProtectedRoute><Products/></ProtectedRoute>},
     {path:'productdetails/:category/:id' , element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
     {path:'categories' , element:<ProtectedRoute><Categories/></ProtectedRoute>},
+    {path:'categories/:id' , element:<ProtectedRoute><SubCategory/></ProtectedRoute>},
     {path:'brands' , element:<ProtectedRoute><Brands/></ProtectedRoute>},
     {path:'login' , element:<ProtectedLogin><Login/></ProtectedLogin>},
     {path: 'register' , element:<ProtectedLogin><Register/></ProtectedLogin>},

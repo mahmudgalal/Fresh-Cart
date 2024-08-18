@@ -1,68 +1,76 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 /* You can add global styles to this file, and also import other style files */
-:root
-{
-    --main-color:#0aad0a;
-    --light-color:#f0f3f2;
-    --shadow: rgba(145,158,171,.2) 0px 2px 4px -1px,rgba(145,158,171,.14) 0px 4px 5px 0px,rgba(145,158,171,.12) 0px 1px 10px 0px;
-    --font-family:'Encode Sans Expanded', sans-serif;
-    --rating-color:#ffc908;
+:root {
+  --main-color: #0aad0a;
+  --light-color: #f0f3f2;
+  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+  --font-family: "Encode Sans Expanded", sans-serif;
+  --rating-color: #ffc908;
 }
 
-body{
-    font-family: var(--font-family) !important;
+.text-hover:hover,
+.active {
+  color: var(--main-color);
 }
-.rating-color
-{
-    color: var(--rating-color);
+.badge {
+  padding: 0.35em 0.35rem;
+  font-size: 0.75em;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 5px;
+  display: inline-block;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  position: absolute;
+  top: -10px;
+  right: -10px;
 }
-.cursor-pointer
-{
-    cursor: pointer;
-}
-a , a:hover{
-    color: black;
-    text-decoration: none;
-}
-.product:hover
-{
-    box-shadow: var(--shadow);
-    border: solid 1px var(--main-color);
-}
-.product .btn 
-{
-    transition: transform 0.4s , opacity 1s;
-    transform: translateY(100%);
-    opacity: 0;
-}
-.product:hover .btn 
-{
-    opacity: 1;
-    transform: translateY(0%);
 
+body {
+  font-family: var(--font-family) !important;
 }
-.font-sm
-{
-    font-size: 14px;
+.rating-color {
+  color: var(--rating-color);
 }
-.text-main
-{
-    color: var(--main-color);
+.cursor-pointer {
+  cursor: pointer;
 }
-.text-main-light
-{
-    color: var(--light-color);
+a {
+  color: black;
+  text-decoration: none;
 }
-.bg-main
-{
-    background-color: var(--main-color) !important;
+.product:hover {
+  box-shadow: var(--shadow);
+  border: solid 1px var(--main-color);
 }
-.bg-main-light 
-{
-    background-color: var(--light-color) !important;
+.product .btn {
+  transition: transform 0.4s, opacity 1s;
+  transform: translateY(100%);
+  opacity: 0;
+}
+.product:hover .btn {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.font-sm {
+  font-size: 14px;
+}
+.text-main {
+  color: var(--main-color);
+}
+.text-main-light {
+  color: var(--light-color);
+}
+.bg-main {
+  background-color: var(--main-color) !important;
+}
+.bg-main-light {
+  background-color: var(--light-color) !important;
 }

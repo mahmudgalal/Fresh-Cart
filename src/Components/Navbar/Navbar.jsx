@@ -1,19 +1,19 @@
 import React, { useContext, useState } from "react";
 import style from "./Navbar.module.css";
 import logo from "../../assets/images/freshcart-logo.svg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CounterContext } from "../../Context/CounterContext";
 import { authContext } from "../../Context/AuthContext";
 
 export default function Navbar() {
-  const { token ,setToken } = useContext(authContext);
-  const navigate = useNavigate()
+  const { token, setToken } = useContext(authContext);
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
-  function logout(){
-    localStorage.removeItem('userToken');
-    navigate('/login');
-    setToken(null)
+  function logout() {
+    localStorage.removeItem("userToken");
+    navigate("/login");
+    setToken(null);
   }
 
   const isOpen = () => {
@@ -24,39 +24,53 @@ export default function Navbar() {
     <>
       <nav className="bg-gray-200  md:fixed md:z-50 top-0 inset-x-0 py-2 text-center capitalize flex pe-8 transition-all duration-500 ease-in">
         <div className="container flex flex-col px-2 md:flex-row justify-between items-center text-gray-500">
-          <div className="flex flex-col md:flex-row space-x-3 w-full">
+          <div className="flex flex-col md:flex-row space-x-3 w-full justify-between">
             <img src={logo} width={120} alt="" />
             <ul
-              className={`md:flex gap-2 items-center flex-col md:flex-row w-full ${
-                open ? "flex" : "hidden"
+              className={`flex flex-col md:flex-row transition-all duration-700 overflow-hidden items-center gap-4 flex-nowrap ${
+                open ? "mt-3 md:mt-0 h-[150px] md:h-8" : "h-0 md:flex md:h-8"
               }`}
             >
               {token && (
                 <>
                   <li>
-                    <NavLink to="">Home</NavLink>
+                    <NavLink to="" className={`text-hover`}>
+                      Home
+                    </NavLink>
+                  </li>
+
+                  <li>
+                    <NavLink to="products" className={`text-hover`}>
+                      products
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="cart">cart</NavLink>
+                    <NavLink to="categories" className={`text-hover`}>
+                      categories
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="products">products</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="categories">categories</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="brands">brands</NavLink>
+                    <NavLink to="brands" className={`text-hover`}>
+                      brands
+                    </NavLink>
                   </li>
                 </>
               )}
             </ul>
             <div className="">
               <ul
-                className={`md:flex gap-2 items-center flex-col md:flex-row w-full ${
-                  open ? "flex" : "hidden"
+                className={`flex flex-col md:flex-row transition-all duration-700 overflow-hidden md:overflow-visible items-center gap-4 flex-nowrap ${
+                  open ? "mt-3 md:mt-0 h-15" : "h-0 md:flex md:h-8"
                 }`}
               >
+                <li>
+                 <div  className="absolute top-2 right-16 md:relative md:top-0 md:right-0 mt-1">
+                    <Link to="cart">
+                      <i className="fa-solid fa-cart-shopping fa-xl"></i>
+                    <span className="badge text-white bg-main">0</span>
+                    </Link>
+                 </div>
+                </li>
                 <li className="space-x-2 text-black flex">
                   <i className="fab fa-facebook-f"></i>
                   <i className="fab fa-linkedin-in"></i>
@@ -66,7 +80,9 @@ export default function Navbar() {
                 </li>
                 {token ? (
                   <li>
-                    <span onClick={logout} className="cursor-pointer">logout</span>
+                    <span onClick={logout} className="cursor-pointer">
+                      logout
+                    </span>
                   </li>
                 ) : (
                   <>

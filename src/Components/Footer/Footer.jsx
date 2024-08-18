@@ -30,7 +30,7 @@ export default function Footer() {
           </button>
         </form>
         <hr />
-        <div className="my-2 flex flex-col md:flex-row justify-between items-center">
+        <div className="my-2 flex flex-col lg:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row gap-3 items-center mb-7 md:mb-0">
             <span className="text-xl">Payment Partners</span>
             <div className="flex justify-center items-center gap-3">
