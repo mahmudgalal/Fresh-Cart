@@ -29,7 +29,7 @@ export default function Home() {
   }, []);
 
   if (isLoading) {
-    return <div className='flex justify-center w-full'>
+    return <div className='flex justify-center w-full h-[600px] items-center'>
     <Loading/>
     </div>
   }

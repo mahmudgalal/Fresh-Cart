@@ -63,8 +63,8 @@ export default function Register() {
         </div>
       )}
       <form className="max-w-md mx-auto my-9" onSubmit={formik.handleSubmit}>
-        {registerInputs.map((el) => (
-          <div className="mb-5">
+        {registerInputs.map((el , index) => (
+          <div className="mb-5" key={index}>
             <div className="relative z-0 w-full mb-1 group">
               <input
                 type={el.type}

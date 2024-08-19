@@ -16,7 +16,7 @@ export default function Categories() {
   });
   if (isLoading) {
     return (
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center w-full h-[600px] items-center">
         <Loading />
       </div>
     );

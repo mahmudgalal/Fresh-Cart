@@ -5,20 +5,29 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../Loading/Loading";
 
 export default function RelatedProducts({ id }) {
-  const [relatedProducts, setRelatedProducts] = useState();
   let {addProduct} = useContext(CartContext)
-
-  async function getRelatedProducts(id) {
-    const { data } = await axios.get(
-      `https://ecommerce.routemisr.com/api/v1/products?category=${id}`
-    );
-    setRelatedProducts(data.data);
-  }
-  useEffect(() => {
-    getRelatedProducts(id);
+  let { data, error, isError, isLoading, isFetching } = useQuery({
+    queryKey: ["relatedProducts", id],
+    queryFn: () => {
+      return axios.get(
+        `https://ecommerce.routemisr.com/api/v1/products?category=${id}`
+      );
+    },
   });
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center w-full h-[600px] items-center">
+        <Loading />
+      </div>
+    );
+  }
+
+
 
   var settings = {
     dots: false,
@@ -42,7 +51,7 @@ export default function RelatedProducts({ id }) {
   return (
     <div className="slider-container">
         <Slider {...settings}>
-          {relatedProducts?.map((product, index) => (
+          {data?.data.data.map((product, index) => (
             <Link to={`/productdetails/${product.category.name}/${product.id}`} key={index}>
               <div className="mt-2 mb-8 px-3 overflow-hidden ">
                 <div className=" shadow-lg p-2 product">

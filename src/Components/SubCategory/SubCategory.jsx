@@ -4,10 +4,16 @@ import { Link, useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { CartContext } from "../../Context/CartContext";
+import { WishlistContext } from "../../Context/WishlistContext";
+import RecentProducts from "../RecentProducts/RecentProducts";
 
 export default function SubCategory() {
   const { id } = useParams();
-  let {addProduct} = useContext(CartContext);
+  let { addProduct } = useContext(CartContext);
+  let { addProductToWishlist, deleteProductFromWishlist } =
+    useContext(WishlistContext);
+  let [select, setSelect] = useState(false);
+
   let { data, error, isError, isLoading, isFetching } = useQuery({
     queryKey: ["subCategory", id],
     queryFn: () => {
@@ -17,9 +23,10 @@ export default function SubCategory() {
     },
   });
 
+
   if (isLoading) {
     return (
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center w-full h-[600px] items-center">
         <Loading />
       </div>
     );
@@ -29,35 +36,7 @@ export default function SubCategory() {
       {
         <div className="flex flex-wrap">
           {data.data.data.map((product, index) => (
-            <div
-              className=" md:mx-0 w-1/2 md:w-1/3 lg:w-1/5 my-3 px-2"
-              key={index}
-            >
-              <div className="overflow-hidden product shadow-lg px-3">
-                <Link
-                  to={`/productdetails/${product.category.name}/${product.id}`}
-                >
-                  <div>
-                    <img
-                      src={product.imageCover}
-                      className="w-full h-[300px]"
-                    />
-                    <p className="text-main text-sm">{product.category.name}</p>
-                    <h2>{product.title.split(" ").slice(0, 3).join(" ")}</h2>
-                    <div className="flex justify-between mt-2">
-                      <h3 className="text-fa-bold">{product.price}EGP</h3>
-                      <h3>
-                        <i className="fas fa-star rating-color"></i>{" "}
-                        {product.ratingsAverage}
-                      </h3>
-                    </div>
-                  </div>
-                </Link>
-                <button className="btn w-full bg-main text-white rounded my-2 py-2" onClick={() => addProduct(product.id)}>
-                  Add to Cart
-                </button>
-              </div>
-            </div>
+           <RecentProducts product={product} key={index} />
           ))}
         </div>
       }

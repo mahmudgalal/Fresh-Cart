@@ -11,6 +11,9 @@ export default function WishlistContextProvider({ children }) {
   };
 
   const [wishlist, setWishlist] = useState(null);
+  const [fill , setFill] = useState([])
+  const [loading , setLoading] = useState(false);
+
   async function getWishlist() {
     try {
       let { data } = await axios.get(
@@ -26,6 +29,7 @@ export default function WishlistContextProvider({ children }) {
   }
 
   async function addProductToWishlist(productId) {
+    setFill((fill) => [...fill , productId])
     let { data } = await axios.post(
       `https://ecommerce.routemisr.com/api/v1/wishlist`,
       {
@@ -38,6 +42,7 @@ export default function WishlistContextProvider({ children }) {
     toast.success("Added Successfully");
   }
   async function deleteProductFromWishlist(productId) {
+    setLoading(true)
     let { data } = await axios.delete(
       `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,
       {
@@ -46,8 +51,9 @@ export default function WishlistContextProvider({ children }) {
     );
     toast.error("removed Successfully");
     setWishlist(data);
+    fill.shift(fill.indexOf(productId))
+    setLoading(false)
   }
-
   return (
     <WishlistContext.Provider
       value={{
@@ -55,7 +61,8 @@ export default function WishlistContextProvider({ children }) {
         getWishlist,
         wishlist,
         deleteProductFromWishlist,
-        
+        fill,
+        loading
       }}
     >
       {children}

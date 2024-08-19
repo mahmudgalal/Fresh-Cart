@@ -5,11 +5,11 @@ import { WishlistContext } from "../../Context/WishlistContext";
 
 export default function RecentProducts({ product }) {
   let { addProduct } = useContext(CartContext);
-  let { addProductToWishlist , deleteProductFromWishlist} = useContext(WishlistContext);
+  let { addProductToWishlist , deleteProductFromWishlist , fill} = useContext(WishlistContext);
   let [select, setSelect] = useState(false);
  function add(){
-   setSelect(!select);
   addProductToWishlist(product.id);
+  setSelect(!select);
  }
  function removed(){
    setSelect(!select);
@@ -21,8 +21,8 @@ export default function RecentProducts({ product }) {
         <div className="overflow-hidden product shadow-lg px-3 relative">
           <div className="bg-transparent px-3  py-2 rounded absolute w-[50px] right-0 top-0 cursor-pointer">
             <i
-              class={`${
-                select ? "fa-solid" : "fa-regular"
+              className={`${
+                fill?.includes(product.id) ? "fa-solid" : "fa-regular"
               } fa-heart fa-2xl text-red-700`}
               onClick={() => select? removed() : add()}
             ></i>

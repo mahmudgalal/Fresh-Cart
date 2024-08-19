@@ -11,6 +11,7 @@ export default function CartContextProvider({ children }) {
   };
 
   const [cart, setCart] = useState(null);
+  const [loading, setLoading] = useState(false);
   async function getCart() {
     try {
       let { data } = await axios.get(
@@ -25,6 +26,7 @@ export default function CartContextProvider({ children }) {
     }
   }
   async function clearCart() {
+    setLoading(true);
     let { data } = await axios.delete(
       `https://ecommerce.routemisr.com/api/v1/cart`,
       {
@@ -32,6 +34,7 @@ export default function CartContextProvider({ children }) {
       }
     );
     setCart(null);
+    setLoading(false);
   }
   async function addProduct(productId) {
     let { data } = await axios.post(
@@ -45,7 +48,21 @@ export default function CartContextProvider({ children }) {
     );
     toast.success("Added Successfully");
   }
+  async function checkout(ShippingAddress) {
+    let { data } = await axios.post(
+      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.data._id}?url=http://localhost:5174/`,
+      {
+        ShippingAddress,
+      },
+      {
+        headers,
+      }
+    );
+    window.location.href = data.session.url;
+    console.log(data);
+  }
   async function updateProduct(productId, count) {
+    setLoading(true);
     let { data } = await axios.put(
       `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
       {
@@ -56,8 +73,10 @@ export default function CartContextProvider({ children }) {
       }
     );
     setCart(data);
+    setLoading(false);
   }
   async function deleteProduct(productId) {
+    setLoading(true);
     let { data } = await axios.delete(
       `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
       {
@@ -65,6 +84,7 @@ export default function CartContextProvider({ children }) {
       }
     );
     setCart(data);
+    setLoading(false);
   }
 
   return (
@@ -76,6 +96,8 @@ export default function CartContextProvider({ children }) {
         updateProduct,
         deleteProduct,
         clearCart,
+        loading,
+        checkout,
       }}
     >
       {children}

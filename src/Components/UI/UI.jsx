@@ -8,6 +8,21 @@ export const loginInputs = [
         label: 'Password'
     }
 ]
+export const checkoutInputs = [
+    {
+        type: 'text',
+        label: 'details'
+    },
+    {
+        type: 'tel',
+        label: 'phone'
+    }
+    ,
+    {
+        type: 'text',
+        label: 'city'
+    }
+]
 
 export const registerInputs = [
     {

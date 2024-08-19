@@ -23,6 +23,8 @@ import CartContextProvider from './Context/CartContext.jsx'
 import { Toaster } from 'react-hot-toast'
 import WishlistContextProvider from './Context/WishlistContext.jsx'
 import Wishlist from './Components/Wishlist/Wishlist.jsx'
+import Checkout from './Components/Checkout/Checkout.jsx'
+import AllOrders from './Components/AllOrders/AllOrders.jsx'
 
 let query = new QueryClient()
 
@@ -35,6 +37,9 @@ let routers = createHashRouter([
     {path:'productdetails/:category/:id' , element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
     {path:'categories' , element:<ProtectedRoute><Categories/></ProtectedRoute>},
     {path:'categories/:id' , element:<ProtectedRoute><SubCategory/></ProtectedRoute>},
+    {path:'brands' , element:<ProtectedRoute><Brands/></ProtectedRoute>},
+    {path:'checkout' , element:<ProtectedRoute><Checkout/></ProtectedRoute>},
+    {path:'allorders' , element:<ProtectedRoute><AllOrders/></ProtectedRoute>},
     {path:'brands' , element:<ProtectedRoute><Brands/></ProtectedRoute>},
     {path:'login' , element:<ProtectedLogin><Login/></ProtectedLogin>},
     {path: 'register' , element:<ProtectedLogin><Register/></ProtectedLogin>},
