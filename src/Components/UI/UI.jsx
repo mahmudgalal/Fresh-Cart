@@ -8,6 +8,18 @@ export const loginInputs = [
         label: 'Password'
     }
 ]
+export const resetInputs = [
+    {
+        type: 'email',
+        label: 'Email Address',
+        name: "email"
+    },
+    {
+        type: 'password',
+        label: 'New Password',
+        name: "newPassword"
+    }
+]
 export const checkoutInputs = [
     {
         type: 'text',

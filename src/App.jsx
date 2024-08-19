@@ -25,10 +25,13 @@ import WishlistContextProvider from './Context/WishlistContext.jsx'
 import Wishlist from './Components/Wishlist/Wishlist.jsx'
 import Checkout from './Components/Checkout/Checkout.jsx'
 import AllOrders from './Components/AllOrders/AllOrders.jsx'
+import ForgetPassword from './Components/ForgetPassword/ForgetPassword.jsx'
+import ResetCode from './Components/ResetCode/ResetCode.jsx'
+import ResetPassword from './Components/ResetPassword/ResetPassword.jsx'
 
 let query = new QueryClient()
 
-let routers = createHashRouter([
+let routers = createBrowserRouter([
   {path: '' , element: <Layout/>, children :[
     {index: true , element:<ProtectedRoute><Home/></ProtectedRoute>},
     {path:'cart' , element:<ProtectedRoute><Cart/></ProtectedRoute>},
@@ -42,6 +45,9 @@ let routers = createHashRouter([
     {path:'allorders' , element:<ProtectedRoute><AllOrders/></ProtectedRoute>},
     {path:'brands' , element:<ProtectedRoute><Brands/></ProtectedRoute>},
     {path:'login' , element:<ProtectedLogin><Login/></ProtectedLogin>},
+    {path:'forgetpassword' , element:<ProtectedLogin><ForgetPassword/></ProtectedLogin>},
+    {path:'resetcode' , element:<ProtectedLogin><ResetCode/></ProtectedLogin>},
+    {path:'reset-password' , element:<ProtectedLogin><ResetPassword/></ProtectedLogin>},
     {path: 'register' , element:<ProtectedLogin><Register/></ProtectedLogin>},
     {path:'*' , element:<Notfound/>},
   ]}

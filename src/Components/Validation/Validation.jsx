@@ -22,3 +22,9 @@ export let validationSchemaRegister = Yup.object().shape({
       )
       .required("Password is Required"),
   });
+  export let validationSchemaForget = Yup.object().shape({
+    email: Yup.string().email("Invalid Email").required("Email is required"),
+  });
+  export let validationSchemaReset = Yup.object().shape({
+    resetCode: Yup.string().required("Reset Code is required"),
+  });
