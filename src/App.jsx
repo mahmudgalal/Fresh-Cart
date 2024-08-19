@@ -21,6 +21,8 @@ import SubCategory from './Components/SubCategory/SubCategory.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import CartContextProvider from './Context/CartContext.jsx'
 import { Toaster } from 'react-hot-toast'
+import WishlistContextProvider from './Context/WishlistContext.jsx'
+import Wishlist from './Components/Wishlist/Wishlist.jsx'
 
 let query = new QueryClient()
 
@@ -28,6 +30,7 @@ let routers = createHashRouter([
   {path: '' , element: <Layout/>, children :[
     {index: true , element:<ProtectedRoute><Home/></ProtectedRoute>},
     {path:'cart' , element:<ProtectedRoute><Cart/></ProtectedRoute>},
+    {path:'wishlist' , element:<ProtectedRoute><Wishlist/></ProtectedRoute>},
     {path:'products' , element:<ProtectedRoute><Products/></ProtectedRoute>},
     {path:'productdetails/:category/:id' , element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
     {path:'categories' , element:<ProtectedRoute><Categories/></ProtectedRoute>},
@@ -44,10 +47,12 @@ function App() {
       return  <QueryClientProvider client={query}>
           <AuthContextProvider>
     <CounterContextProvider>
-        <CartContextProvider>
-      <RouterProvider router={routers}></RouterProvider>
-      <Toaster />
-        </CartContextProvider>
+       <WishlistContextProvider>
+          <CartContextProvider>
+        <RouterProvider router={routers}></RouterProvider>
+        <Toaster />
+          </CartContextProvider>
+       </WishlistContextProvider>
     </CounterContextProvider>
     </AuthContextProvider>
       </QueryClientProvider>
