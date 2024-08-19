@@ -3,10 +3,15 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 
 export default function CategorySlider() {
-  const [categories, setCategories] = useState([]);
+  let {data} = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories
+  })
+
   var settings = {
     dots: false,
     infinite: true,
@@ -29,20 +34,17 @@ export default function CategorySlider() {
 
 
 
-  async function getCategories() {
-    let { data } = await axios.get(
+  function getCategories() {
+    return axios.get(
       `https://ecommerce.routemisr.com/api/v1/categories`
     );
-    setCategories(data.data);
   }
 
-  useEffect(() => {
-    getCategories();
-  }, []);
+
   return (
     <div className="Slider-container">
       <Slider {...settings}>
-        {categories.map((category, index) => (
+        {data?.data.data.map((category, index) => (
           <div key={index} className="mt-2 mb-8">
             
             <img

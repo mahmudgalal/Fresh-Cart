@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../../Context/CartContext'
 
 export default function RecentProducts({product}) {
+
+  let {addProduct} = useContext(CartContext);
   return <>
     
         <div className=' md:mx-0 w-1/2 md:w-1/3 lg:w-1/4 my-3 px-2'>
@@ -17,7 +20,7 @@ export default function RecentProducts({product}) {
                </div>
             </div>
             </Link>
-             <button className='btn w-full bg-main text-white rounded my-2 py-2'>Add to Cart</button>
+             <button className='btn w-full bg-main text-white rounded my-2 py-2' onClick={() => addProduct(product.id)}>Add to Cart</button>
            </div>
         </div>
        

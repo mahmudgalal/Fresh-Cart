@@ -3,7 +3,7 @@ import style from "./Login.module.css";
 import { useFormik } from "formik";
 import { validationSchemaLogin } from "../Validation/Validation";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../Context/AuthContext";
 import { loginInputs } from "../UI/UI";
 import AOS from "aos";
@@ -92,21 +92,25 @@ export default function Login() {
         </div>
           ))
         }
-        {loading ? (
-          <button
-            type=""
-            className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-          >
-            <i className="fa fa-spinner fa-spin-pulse"></i>
-          </button>
-        ) : (
-          <button
-            type="submit"
-            className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-          >
-            Submit
-          </button>
-        )}
+        <div className="flex flex-col md:flex-row gap-3 justify-between items-center">
+          {loading ? (
+            <button
+              type=""
+              className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            >
+              <i className="fa fa-spinner fa-spin-pulse"></i>
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            >
+              Submit
+            </button>
+          )}
+          <span className="cursor-pointer text-red-700">Forget Password?</span>
+        </div>
+        <h2 className="mt-8 text-center">Don't have account? <Link to={"/register"} className="text-main">Register Now</Link></h2>
       </form>
     </div>
   );

@@ -2,27 +2,31 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import { useQuery } from "@tanstack/react-query";
 
 export default function SubCategory() {
   const { id } = useParams();
-  const [subCategory, setSubCategory] = useState([]);
+  let { data, error, isError, isLoading, isFetching } = useQuery({
+    queryKey: ["subCategory", id],
+    queryFn: () => {
+      return axios.get(
+        `https://ecommerce.routemisr.com/api/v1/products?category=${id}`
+      );
+    },
+  });
 
-  async function categoryDetails(id) {
-    const {data} = await axios.get(
-      `https://ecommerce.routemisr.com/api/v1/products?category=${id}`
+  if (isLoading) {
+    return (
+      <div className="flex justify-center w-full">
+        <Loading />
+      </div>
     );
-
-    setSubCategory(data.data)
   }
-
-  useEffect(() => {
-    categoryDetails(id);
-  }, []);
   return (
     <>
-      {subCategory.length > 0? (
-       <div className="flex flex-wrap">
-         { subCategory.map((product, index) => (
+      {
+        <div className="flex flex-wrap">
+          {data.data.data.map((product, index) => (
             <div
               className=" md:mx-0 w-1/2 md:w-1/3 lg:w-1/5 my-3 px-2"
               key={index}
@@ -32,7 +36,10 @@ export default function SubCategory() {
                   to={`/productdetails/${product.category.name}/${product.id}`}
                 >
                   <div>
-                    <img src={product.imageCover} className="w-full h-[300px]" />
+                    <img
+                      src={product.imageCover}
+                      className="w-full h-[300px]"
+                    />
                     <p className="text-main text-sm">{product.category.name}</p>
                     <h2>{product.title.split(" ").slice(0, 3).join(" ")}</h2>
                     <div className="flex justify-between mt-2">
@@ -50,9 +57,7 @@ export default function SubCategory() {
               </div>
             </div>
           ))}
-       </div>
-      ) :
-        <div className="w-full h-[600px] flex justify-center items-center"><Loading/></div>
+        </div>
       }
     </>
   );

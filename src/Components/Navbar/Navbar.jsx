@@ -1,14 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import style from "./Navbar.module.css";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CounterContext } from "../../Context/CounterContext";
 import { authContext } from "../../Context/AuthContext";
+import { CartContext } from "../../Context/CartContext";
 
 export default function Navbar() {
   const { token, setToken } = useContext(authContext);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  let { cart , getCart } = useContext(CartContext);
+
+  useEffect(() => {
+    getCart()
+  } , [cart])
 
   function logout() {
     localStorage.removeItem("userToken");
@@ -26,12 +32,13 @@ export default function Navbar() {
         <div className="container flex flex-col px-2 md:flex-row justify-between items-center text-gray-500">
           <div className="flex flex-col md:flex-row space-x-3 w-full justify-between">
             <img src={logo} width={120} alt="" />
-            <ul
+            {
+              token && <ul
               className={`flex flex-col md:flex-row transition-all duration-700 overflow-hidden items-center gap-4 flex-nowrap ${
                 open ? "mt-3 md:mt-0 h-[150px] md:h-8" : "h-0 md:flex md:h-8"
               }`}
             >
-              {token && (
+              
                 <>
                   <li>
                     <NavLink to="" className={`text-hover`}>
@@ -55,8 +62,9 @@ export default function Navbar() {
                     </NavLink>
                   </li>
                 </>
-              )}
+              
             </ul>
+            }
             <div className="">
               <ul
                 className={`flex flex-col md:flex-row transition-all duration-700 overflow-hidden md:overflow-visible items-center gap-4 flex-nowrap ${
@@ -67,16 +75,9 @@ export default function Navbar() {
                  <div  className="absolute top-2 right-16 md:relative md:top-0 md:right-0 mt-1">
                     <Link to="cart">
                       <i className="fa-solid fa-cart-shopping fa-xl"></i>
-                    <span className="badge text-white bg-main">0</span>
+                    <span className="badge text-white bg-main">{cart?.numOfCartItems > 0?cart.numOfCartItems : 0}</span>
                     </Link>
                  </div>
-                </li>
-                <li className="space-x-2 text-black flex">
-                  <i className="fab fa-facebook-f"></i>
-                  <i className="fab fa-linkedin-in"></i>
-                  <i className="fab fa-youtube"></i>
-                  <i className="fab fa-twitter"></i>
-                  <i className="fab fa-instagram"></i>
                 </li>
                 {token ? (
                   <li>
@@ -94,6 +95,14 @@ export default function Navbar() {
                     </li>
                   </>
                 )}
+                <li className="space-x-2 text-black flex">
+                  <i className="fab fa-facebook-f"></i>
+                  <i className="fab fa-linkedin-in"></i>
+                  <i className="fab fa-youtube"></i>
+                  <i className="fab fa-twitter"></i>
+                  <i className="fab fa-instagram"></i>
+                </li>
+                
               </ul>
             </div>
           </div>

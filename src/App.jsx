@@ -18,6 +18,11 @@ import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.jsx'
 import ProtectedLogin from './Components/ProtectedLogin/ProtectedLogin.jsx'
 import ProductDetails from './Components/ProductDetails/ProductDetails.jsx'
 import SubCategory from './Components/SubCategory/SubCategory.jsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import CartContextProvider from './Context/CartContext.jsx'
+import { Toaster } from 'react-hot-toast'
+
+let query = new QueryClient()
 
 let routers = createHashRouter([
   {path: '' , element: <Layout/>, children :[
@@ -36,11 +41,16 @@ let routers = createHashRouter([
 
 function App() {
 
-      return  <AuthContextProvider>
-  <CounterContextProvider>
-    <RouterProvider router={routers}></RouterProvider>
-  </CounterContextProvider>
-  </AuthContextProvider>
+      return  <QueryClientProvider client={query}>
+          <AuthContextProvider>
+    <CounterContextProvider>
+        <CartContextProvider>
+      <RouterProvider router={routers}></RouterProvider>
+      <Toaster />
+        </CartContextProvider>
+    </CounterContextProvider>
+    </AuthContextProvider>
+      </QueryClientProvider>
 }
 
 export default App
