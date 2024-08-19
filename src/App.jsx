@@ -1,5 +1,5 @@
 import './App.css'
-import { createHashRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, createHashRouter, RouterProvider } from 'react-router-dom'
 import Layout from './Components/Layout/Layout.jsx'
 import Home from './Components/Home/Home.jsx'
 import Cart from './Components/Cart/Cart.jsx'
@@ -28,7 +28,7 @@ import ResetPassword from './Components/ResetPassword/ResetPassword.jsx'
 
 let query = new QueryClient()
 
-let routers = createHashRouter([
+let routers = createBrowserRouter([
   {path: '' , element: <Layout/>, children :[
     {index: true , element:<ProtectedRoute><Home/></ProtectedRoute>},
     {path:'cart' , element:<ProtectedRoute><Cart/></ProtectedRoute>},
