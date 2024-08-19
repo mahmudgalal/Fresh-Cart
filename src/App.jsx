@@ -28,7 +28,7 @@ import ResetPassword from './Components/ResetPassword/ResetPassword.jsx'
 
 let query = new QueryClient()
 
-let routers = createBrowserRouter([
+let routers = createHashRouter([
   {path: '' , element: <Layout/>, children :[
     {index: true , element:<ProtectedRoute><Home/></ProtectedRoute>},
     {path:'cart' , element:<ProtectedRoute><Cart/></ProtectedRoute>},
