@@ -19,9 +19,7 @@ export default function Cart() {
       <div className="w-full flex justify-end py-6">
         <button
           className="bg-red-700 text-white px-3 py-2  rounded me-4 "
-          onClick={() => {
-            clearCart();
-          }}
+          onClick={() => clearCart()}
         >
           Clear Cart
         </button>
@@ -152,6 +150,11 @@ export default function Cart() {
               </tr>
             </tfoot>
           </table>
+          <div className="flex justify-center my-3">
+            <button className="bg-main w-full md:w-[50%] py-2 mx-2 rounded text-white">
+              Checkout
+            </button>
+          </div>{" "}
         </div>
       )}
     </>

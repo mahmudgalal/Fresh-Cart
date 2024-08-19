@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import style from './ProductDetails.module.css'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -9,9 +9,11 @@ import Loading from '../Loading/Loading';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import RelatedProducts from '../RelatedProducts/RelatedProducts';
+import { CartContext } from '../../Context/CartContext';
 
 export default function ProductDetails() {
 const {id} = useParams()
+let {addProduct} = useContext(CartContext)
 const [product , setProduct] = useState();
 
 useEffect(() => {
@@ -69,7 +71,7 @@ useEffect(() => {
         <h3 className='text-fa-bold'>{product.price}LE</h3>
         <h3><i className='fas fa-star rating-color'></i> {product.ratingsAverage}</h3>
         </div>
-        <button className='btn w-full bg-main text-white rounded my-2 py-2'>Add to Cart</button>
+        <button className='btn w-full bg-main text-white rounded my-2 py-2' onClick={() => addProduct(product.id)}>Add to Cart</button>
       </div>
       
         </> :

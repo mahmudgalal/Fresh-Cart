@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
+import { CartContext } from "../../Context/CartContext";
 
 export default function SubCategory() {
   const { id } = useParams();
+  let {addProduct} = useContext(CartContext);
   let { data, error, isError, isLoading, isFetching } = useQuery({
     queryKey: ["subCategory", id],
     queryFn: () => {
@@ -51,7 +53,7 @@ export default function SubCategory() {
                     </div>
                   </div>
                 </Link>
-                <button className="btn w-full bg-main text-white rounded my-2 py-2">
+                <button className="btn w-full bg-main text-white rounded my-2 py-2" onClick={() => addProduct(product.id)}>
                   Add to Cart
                 </button>
               </div>

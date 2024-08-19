@@ -21,6 +21,7 @@ export default function CartContextProvider({ children }) {
       );
       setCart(data);
     } catch (error) {
+      console.log(error);
     }
   }
   async function clearCart() {

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../Context/CartContext";
 
 export default function RelatedProducts({ id }) {
   const [relatedProducts, setRelatedProducts] = useState();
+  let {addProduct} = useContext(CartContext)
 
   async function getRelatedProducts(id) {
     const { data } = await axios.get(
@@ -55,7 +57,7 @@ export default function RelatedProducts({ id }) {
                       {product.ratingsAverage}
                     </h3>
                   </div>
-                  <button className="btn w-full bg-main text-white rounded my-2 py-2">
+                  <button className="btn w-full bg-main text-white rounded my-2 py-2" onClick={() => addProduct(product.id)}>
                     Add to Cart
                   </button>
                 </div>
