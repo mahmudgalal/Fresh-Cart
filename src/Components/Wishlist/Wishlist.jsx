@@ -6,9 +6,11 @@ export default function Wishlist() {
   let { wishlist, getWishlist, deleteProductFromWishlist, loading } =
     useContext(WishlistContext);
 
+  
+
   useEffect(() => {
     getWishlist();
-  }, []);
+  });
 
   if (wishlist?.count == 0) {
     return (
