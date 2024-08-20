@@ -51,6 +51,7 @@ export default function WishlistContextProvider({ children }) {
     );
     toast.error("removed Successfully");
     setWishlist(data);
+    console.log(wishlist);
     fill.shift(fill.indexOf(productId))
     setLoading(false)
   }

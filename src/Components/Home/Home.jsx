@@ -49,7 +49,7 @@ export default function Home() {
       <CategorySlider />
 
       <div className="flex flex-wrap">
-        {data.data.data.map((product, index) => (
+        {data?.data.data.map((product, index) => (
           <RecentProducts product={product} key={index} />
         ))}
       </div>
