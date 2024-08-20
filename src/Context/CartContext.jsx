@@ -50,7 +50,7 @@ export default function CartContextProvider({ children }) {
   }
   async function checkout(ShippingAddress) {
     let { data } = await axios.post(
-      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.data._id}?url=https://fresh-cart-blond.vercel.app/`,
+      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.data._id}?url=https://fresh-cart-blond.vercel.app`,
       {
         ShippingAddress,
       },
