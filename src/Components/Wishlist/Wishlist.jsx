@@ -3,14 +3,12 @@ import { WishlistContext } from "../../Context/WishlistContext";
 import Loading from "../Loading/Loading";
 
 export default function Wishlist() {
-  let { wishlist, getWishlist, deleteProductFromWishlist, loading } =
+  let { wishlist, deleteProductFromWishlist, loading } =
     useContext(WishlistContext);
 
   
 
-  useEffect(() => {
-    getWishlist();
-  });
+
 
   if (wishlist?.count == 0) {
     return (

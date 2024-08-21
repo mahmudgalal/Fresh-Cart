@@ -13,6 +13,7 @@ export default function WishlistContextProvider({ children }) {
   const [wishlist, setWishlist] = useState(null);
   const [fill , setFill] = useState([])
   const [loading , setLoading] = useState(false);
+  const [token , setToken] = useState(localStorage.getItem("userToken"))
 
   async function getWishlist() {
     try {
@@ -23,10 +24,17 @@ export default function WishlistContextProvider({ children }) {
         }
       );
       setWishlist(data);
+      setFill(data.data.map((el) => el.id))
     } catch (error) {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    if (token) {
+      getWishlist();
+     }
+  } , [token])
 
   async function addProductToWishlist(productId) {
     setFill((fill) => [...fill , productId])
@@ -51,7 +59,6 @@ export default function WishlistContextProvider({ children }) {
     );
     toast.error("removed Successfully");
     setWishlist(data);
-    console.log(wishlist);
     fill.shift(fill.indexOf(productId))
     setLoading(false)
   }

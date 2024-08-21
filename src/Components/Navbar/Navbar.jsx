@@ -74,7 +74,7 @@ export default function Navbar() {
                   open ? "mt-3 md:mt-0 h-15" : "h-0 md:flex md:h-8"
                 }`}
               >
-                <li>
+               {token && <li>
                   <div className="absolute top-2 right-16 md:relative md:top-0 md:right-0 mt-1">
                     <Link to="/cart">
                       <i className="fa-solid fa-cart-shopping fa-xl"></i>
@@ -83,8 +83,8 @@ export default function Navbar() {
                       </span>
                     </Link>
                   </div>
-                </li>
-                <li>
+                </li>}
+                {token && <li>
                   <div className="absolute top-2 right-28 md:relative md:top-0 md:right-0 mt-1">
                     <Link to="/wishlist">
                       <i className="fa-solid fa-heart fa-xl text-red-700"></i>
@@ -93,7 +93,7 @@ export default function Navbar() {
                       </span>
                     </Link>
                   </div>
-                </li>
+                </li>}
                 {token ? (
                   <li>
                     <span onClick={logout} className="cursor-pointer">

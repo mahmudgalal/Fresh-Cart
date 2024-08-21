@@ -5,7 +5,7 @@ import { WishlistContext } from "../../Context/WishlistContext";
 
 export default function RecentProducts({ product }) {
   let { addProduct } = useContext(CartContext);
-  let { addProductToWishlist , deleteProductFromWishlist , fill} = useContext(WishlistContext);
+  let { addProductToWishlist , deleteProductFromWishlist , fill } = useContext(WishlistContext);
   let [select, setSelect] = useState(false);
  function add(){
   addProductToWishlist(product.id);
