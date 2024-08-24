@@ -74,3 +74,6 @@ a {
 .bg-main-light {
   background-color: var(--light-color) !important;
 }
+.brand-opacity{
+  background-color: rgba(0, 0, 0, 0.5)
+}

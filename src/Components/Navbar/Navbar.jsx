@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import style from "./Navbar.module.css";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { CounterContext } from "../../Context/CounterContext";
 import { authContext } from "../../Context/AuthContext";
 import { CartContext } from "../../Context/CartContext";
 import { WishlistContext } from "../../Context/WishlistContext";

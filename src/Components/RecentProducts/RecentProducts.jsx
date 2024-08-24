@@ -35,7 +35,7 @@ export default function RecentProducts({ product }) {
               <div className="flex justify-between mt-2">
                 <h3 className="text-fa-bold">{product.price}EGP</h3>
                 <h3>
-                  <i className="fas fa-star rating-color"></i>{" "}
+                  <i className="fas fa-star rating-color"></i>
                   {product.ratingsAverage}
                 </h3>
               </div>
