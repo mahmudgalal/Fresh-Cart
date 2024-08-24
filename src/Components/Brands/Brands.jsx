@@ -1,4 +1,4 @@
-import React, { useEffect, useState , useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import style from "./Brands.module.css";
 import axios from "axios";
 import Loading from "../Loading/Loading";
@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Popup from "reactjs-popup";
 
 export default function Brands() {
-  const ref = useRef()
+  const ref = useRef();
   function getBrands() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/brands`);
   }
@@ -31,7 +31,7 @@ export default function Brands() {
       <div className="flex flex-wrap">
         {data.data.data.map((brand, index) => (
           <Popup
-          ref={ref}
+            ref={ref}
             trigger={
               <button className="mx-auto">
                 <div className="mx-3" key={index}>
@@ -46,13 +46,18 @@ export default function Brands() {
             key={index}
           >
             <div className="fixed inset-0 brand-opacity flex justify-center items-center">
-              <div className="w-[500px] py-10 flex flex-col items-center gap-8 bg-white">
+              <div className="w-[500px] py-10 flex flex-col md:flex-row items-center gap-8 bg-white">
                 <div>
                   <img src={brand.image} alt="" />
                 </div>
-                <div className="md:w-3/4 flex flex-col md:flex-row justify-center md:items-start gap-6">
+                <div className="md:w-3/4 flex flex-col  justify-center md:items-start gap-6">
                   <h2 className="text-main font-bold text-xl">{brand.name}</h2>
-                  <button className="bg-gray-700 text-white p-2 rounded" onClick={() => ref.current.close()}>Close</button>
+                  <button
+                    className="bg-gray-700 text-white p-2 rounded"
+                    onClick={() => ref.current.close()}
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
             </div>
