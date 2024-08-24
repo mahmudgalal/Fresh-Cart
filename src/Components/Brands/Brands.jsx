@@ -50,7 +50,7 @@ export default function Brands() {
                 <div>
                   <img src={brand.image} alt="" />
                 </div>
-                <div className="md:w-3/4 flex flex-col justify-center md:items-start gap-6">
+                <div className="md:w-3/4 flex flex-col md:flex-row justify-center md:items-start gap-6">
                   <h2 className="text-main font-bold text-xl">{brand.name}</h2>
                   <button className="bg-gray-700 text-white p-2 rounded" onClick={() => ref.current.close()}>Close</button>
                 </div>
