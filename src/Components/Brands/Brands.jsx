@@ -33,9 +33,9 @@ export default function Brands() {
           <Popup
           ref={ref}
             trigger={
-              <button>
+              <button className="mx-auto">
                 <div className="mx-3" key={index}>
-                  <div className="product shadow-xl py-3">
+                  <div className="product shadow-xl my-3">
                     <img src={brand.image} alt="" />
                     <h2 className="text-center font-bold">{brand.name}</h2>
                   </div>
@@ -46,11 +46,11 @@ export default function Brands() {
             key={index}
           >
             <div className="fixed inset-0 brand-opacity flex justify-center items-center">
-              <div className="w-[500px] py-10 flex gap-8 bg-white">
+              <div className="w-[500px] py-10 flex flex-col items-center gap-8 bg-white">
                 <div>
                   <img src={brand.image} alt="" />
                 </div>
-                <div className="w-3/4 flex flex-col justify-center items-start gap-6">
+                <div className="md:w-3/4 flex flex-col justify-center md:items-start gap-6">
                   <h2 className="text-main font-bold text-xl">{brand.name}</h2>
                   <button className="bg-gray-700 text-white p-2 rounded" onClick={() => ref.current.close()}>Close</button>
                 </div>

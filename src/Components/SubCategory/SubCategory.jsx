@@ -27,13 +27,15 @@ export default function SubCategory({ _id }) {
 
   return (
     <>
-      <div className="flex flex-wrap gap-5 justify-center w-w-full">
+      <div className="flex flex-wrap justify-center w-full">
         {data.data.data.length > 0 ? data.data.data.map((product, index) => (
-          <div key={index} className="w-full md:w-1/3 lg:w-1/4 border border-black">
-
-              <h2 className="text-center text-main px-8 py-8">{product.name}</h2>
-          </div>
-        )) : <h2 className="text-center text-main px-8 py-8">There is no Sub Caregories</h2>}
+         <div key={index} className="flex flex-wrap my-2 justify-center w-1/2 md:w-1/3 lg:w-1/4 ">
+            <div className="w-full mx-3 border border-black">
+  
+                <h2 className="text-center text-main px-8 py-8">{product.name}</h2>
+            </div>
+         </div>
+        )) : <h2 className="text-center text-main px-8 py-8 font-bold text-2xl">There is no Sub Caregories</h2>}
       </div>
     </>
   );
