@@ -35,7 +35,7 @@ export default function Navbar() {
       <nav className="bg-gray-200  md:fixed md:z-50 top-0 inset-x-0 py-2 text-center capitalize flex pe-8 transition-all duration-500 ease-in">
         <div className="container flex flex-col px-2 md:flex-row justify-between items-center text-gray-500">
           <div className="flex flex-col md:flex-row space-x-3 w-full justify-between">
-            <img src={logo} width={120} alt="" />
+            <Link to={"/"}><img src={logo} width={120} alt="" /></Link>
             {token && (
               <ul
                 className={`flex flex-col md:flex-row transition-all duration-700 overflow-hidden items-center gap-4 flex-nowrap ${
@@ -44,23 +44,23 @@ export default function Navbar() {
               >
                 <>
                   <li>
-                    <NavLink to="" className={`text-hover`}>
+                    <NavLink to="" className={`text-hover`} onClick={isOpen}>
                       Home
                     </NavLink>
                   </li>
 
                   <li>
-                    <NavLink to="products" className={`text-hover`}>
+                    <NavLink to="products" className={`text-hover`} onClick={isOpen}>
                       products
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="categories" className={`text-hover`}>
+                    <NavLink to="categories" className={`text-hover`} onClick={isOpen}>
                       categories
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="brands" className={`text-hover`}>
+                    <NavLink to="brands" className={`text-hover`} onClick={isOpen}>
                       brands
                     </NavLink>
                   </li>
@@ -97,7 +97,7 @@ export default function Navbar() {
                 <>
                     <li>
                       <span onClick={logout} className="cursor-pointer">
-                        <i className="fa-solid fa-right-from-bracket text-black text-2xl px-3"></i>
+                        <i className="fa-solid fa-right-from-bracket text-black text-2xl px-3" onClick={isOpen}></i>
                       </span>
                     </li>
                 </>
