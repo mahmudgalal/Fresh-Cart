@@ -74,7 +74,7 @@ export default function Navbar() {
                 }`}
               >
                {token && <li>
-                  <div className="absolute top-2 right-16 md:relative md:top-0 md:right-0 mt-1">
+                  <div className="absolute top-2 right-28 md:relative md:top-0 md:right-0 mt-1">
                     <Link to="/cart">
                       <i className="fa-solid fa-cart-shopping fa-xl"></i>
                       <span className="badge text-white bg-main">
@@ -84,7 +84,7 @@ export default function Navbar() {
                   </div>
                 </li>}
                 {token && <li>
-                  <div className="absolute top-2 right-28 md:relative md:top-0 md:right-0 mt-1">
+                  <div className="absolute top-2 right-16 md:relative md:top-0 md:right-0 mt-1">
                     <Link to="/wishlist">
                       <i className="fa-solid fa-heart fa-xl text-red-700"></i>
                       <span className="badge text-white bg-main">
@@ -94,28 +94,17 @@ export default function Navbar() {
                   </div>
                 </li>}
                 {token ? (
-                  <li>
-                    <span onClick={logout} className="cursor-pointer">
-                      logout
-                    </span>
-                  </li>
+                <>
+                    <li>
+                      <span onClick={logout} className="cursor-pointer">
+                        <i className="fa-solid fa-right-from-bracket text-black text-2xl px-3"></i>
+                      </span>
+                    </li>
+                </>
                 ) : (
-                  <>
-                    <li>
-                      <NavLink to="login">Login</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="register">Register</NavLink>
-                    </li>
-                  </>
+                  ""
                 )}
-                <li className="space-x-2 text-black flex">
-                  <i className="fab fa-facebook-f"></i>
-                  <i className="fab fa-linkedin-in"></i>
-                  <i className="fab fa-youtube"></i>
-                  <i className="fab fa-twitter"></i>
-                  <i className="fab fa-instagram"></i>
-                </li>
+               
               </ul>
             </div>
           </div>

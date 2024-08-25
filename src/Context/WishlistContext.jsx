@@ -12,7 +12,8 @@ export default function WishlistContextProvider({ children }) {
   const [wishlist, setWishlist] = useState(null);
   const [fill , setFill] = useState([])
   const [loading , setLoading] = useState(false);
-  const [token , setToken] = useState(localStorage.getItem("userToken"))
+  const [token , setToken] = useState(localStorage.getItem("userToken"));
+
 
   async function getWishlist() {
     try {

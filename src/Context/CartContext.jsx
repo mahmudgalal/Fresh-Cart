@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export let CartContext = createContext();
@@ -8,6 +8,14 @@ export default function CartContextProvider({ children }) {
   let headers = {
     token: localStorage.getItem("userToken"),
   };
+
+  const [token , setToken] = useState(localStorage.getItem("userToken"));
+
+  useEffect(() => {
+    if (token) {
+      getCart();
+     }
+  } , [token])
 
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(false);

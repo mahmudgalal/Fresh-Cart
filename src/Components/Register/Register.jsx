@@ -3,7 +3,7 @@ import style from "./Register.module.css";
 import { useFormik } from "formik";
 import { validationSchemaRegister } from "../Validation/Validation";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../Context/AuthContext";
 import { registerInputs } from "../UI/UI";
 import AOS from "aos";
@@ -109,6 +109,7 @@ export default function Register() {
             Submit
           </button>
         )}
+                <h2 className="mt-8 text-center">Have account? <Link to={"/login"} className="text-main">Login Now</Link></h2>
       </form>
     </div>
   );
